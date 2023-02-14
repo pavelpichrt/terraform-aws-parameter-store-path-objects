@@ -2,7 +2,9 @@
 
 A little utility module that simplifies fetching a collection of SSM parameters under a given path. This is useful for namespaces with larger number of parameters that are shared across multiple Terraform projects, typically a config.
 
-Converts SSM parameters:
+## Example
+
+Fetch and convert SSM parameters under `/config` path:
 
 ```
 /config/s3/my-bucket/name = "my-bucket"
