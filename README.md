@@ -16,13 +16,13 @@ Into a Terraform object:
 
 ```
 {
-  "/config/s3/my-bucket/name" = "my-bucket"
-  "/config/foo/bar" = "baz"
-  "/config/example" = "example"
+  "/s3/my-bucket/name" = "my-bucket"
+  "/foo/bar" = "baz"
+  "/example" = "example"
 }
 ```
 
-## Usage
+### In code
 
 ```terraform
 module "config" {
