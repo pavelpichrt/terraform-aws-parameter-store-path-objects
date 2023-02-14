@@ -13,7 +13,7 @@ Given the following parameters in SSM:
 
 ```terraform
 module "config" {
-  source = "../../../terraform-aws-parameter-store-config-data"
+  source = "pavelpichrt/parameter-store-path-objects/aws"
   prefix = "/config"
 }
 
