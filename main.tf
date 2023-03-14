@@ -17,13 +17,18 @@ data "aws_ssm_parameters_by_path" "config" {
   recursive = true
 }
 
-output "_" {
-  value = zipmap(
-    [for name in data.aws_ssm_parameters_by_path.config.names : trimprefix(name, var.prefix)],
-    [for idx, type in data.aws_ssm_parameters_by_path.config.types : (
-      type == "StringList" ?
-      split(",", data.aws_ssm_parameters_by_path.config.values[idx]) :
+output "string" {
+  value = {
+    for idx, type in data.aws_ssm_parameters_by_path.config.types : trimprefix(data.aws_ssm_parameters_by_path.config.names[idx], var.prefix) => (
       data.aws_ssm_parameters_by_path.config.values[idx]
-    )]
-  )
+    ) if type == "String"
+  }
+}
+
+output "list" {
+  value = {
+    for idx, type in data.aws_ssm_parameters_by_path.config.types : trimprefix(data.aws_ssm_parameters_by_path.config.names[idx], var.prefix) => (
+      split(",", data.aws_ssm_parameters_by_path.config.values[idx])
+    ) if type == "StringList"
+  }
 }
