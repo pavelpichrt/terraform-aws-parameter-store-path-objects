@@ -30,8 +30,15 @@ module "config" {
   prefix = "/config"
 }
 
+# String params
 resource "aws_s3_bucket" "my_bucket" {
   # Note that "/config" prefix doesn't need to be included
-  bucket = module.config._["/s3/my-bucket/name"]
+  bucket = module.config.string["/s3/my-bucket/name"]
+}
+
+# List params
+resource "aws_s3_bucket" "availibility_zones" {
+  # Note that "/config" prefix doesn't need to be included
+  bucket = module.config.list["/vpc/availibility-zones"]
 }
 ```
