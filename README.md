@@ -37,8 +37,7 @@ resource "aws_s3_bucket" "my_bucket" {
 }
 
 # List params
-resource "aws_s3_bucket" "availibility_zones" {
-  # Note that "/config" prefix doesn't need to be included
-  bucket = module.config.list["/vpc/availibility-zones"]
+output "availibility_zones" {
+  value = module.config.list["/vpc/availibility-zones"]
 }
 ```
